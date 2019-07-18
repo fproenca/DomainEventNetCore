@@ -1,4 +1,6 @@
-﻿namespace Common
+﻿using System.Threading.Tasks;
+
+namespace Common
 {
     public static class DomainEvents
     {
@@ -11,7 +13,7 @@
                 if (Container != null)
                 {
                     foreach (var handler in Container.GetServices(typeof(IEventHandling<T>)))
-                        ((IEventHandling<T>)handler).Handler(args);
+                        Task.Run(() => ((IEventHandling<T>)handler).Handler(args));
                 }
             }
             catch

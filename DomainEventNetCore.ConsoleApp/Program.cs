@@ -11,6 +11,8 @@ namespace DomainEventNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Begin Console.");
+
             var container = new ResolverDependencies().Resolve();
             
             DomainEvents.Container = new DomainEventsContainer(container);
@@ -20,6 +22,8 @@ namespace DomainEventNetCore.ConsoleApp
             var userRegistered = new UserRegistered(1, 2, user);
 
             DomainEvents.Raise(userRegistered);
+
+            Console.WriteLine("End Console.");
 
             Console.ReadKey();
         }
